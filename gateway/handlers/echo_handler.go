@@ -5,9 +5,9 @@ import (
 	"net/http"
 )
 
+var echoMessage = EchoMessage{"Hello from Gateway!"}
+
 func EchoHandler(w http.ResponseWriter, r *http.Request) {
-	var echoMessage EchoMessage
-	json.NewDecoder(r.Body).Decode(&echoMessage)
 
 	json.NewEncoder(w).Encode(echoMessage)
 }

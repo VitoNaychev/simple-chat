@@ -1,7 +1,6 @@
 package handlers_test
 
 import (
-	"bytes"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -13,12 +12,9 @@ import (
 
 func TestEchoHandler(t *testing.T) {
 	t.Run("echos request", func(t *testing.T) {
-		want := handlers.EchoMessage{"Hello, World!"}
+		want := handlers.EchoMessage{"Hello from Gateway!"}
 
-		body := bytes.NewBuffer([]byte{})
-		json.NewEncoder(body).Encode(want)
-
-		request, _ := http.NewRequest(http.MethodPost, "/echo", body)
+		request, _ := http.NewRequest(http.MethodGet, "/echo", nil)
 		response := httptest.NewRecorder()
 
 		handlers.EchoHandler(response, request)
