@@ -1,0 +1,21 @@
+version: '3'
+services:
+  sessions:
+    build:
+      context: .
+      dockerfile: ./gateway/Dockerfile
+    container_name: gateway
+    networks:
+      - svc-network
+
+  gateway:
+    build:
+      context: .
+      dockerfile: ./sessions/Dockerfile
+    container_name: sessions
+    networks:
+      - svc-network
+
+networks:
+  svc-network:
+    driver: bridge
