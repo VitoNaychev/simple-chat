@@ -2,8 +2,8 @@ package httpclient
 
 import (
 	"fmt"
+	"log"
 	"net/http"
-	"time"
 )
 
 func Ping(url string) {
@@ -15,9 +15,9 @@ func Ping(url string) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		fmt.Printf("Error: Status code %d received from %s\n", resp.StatusCode, url)
+		log.Printf("Error: Status code %d received from %s\n", resp.StatusCode, url)
 		return
 	}
 
-	fmt.Printf("Ping successful at %s\n", time.Now().Format(time.RFC3339))
+	log.Printf("Ping successful at %s\n", url)
 }
